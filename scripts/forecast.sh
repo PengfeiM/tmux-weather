@@ -12,8 +12,7 @@ get_forecast() {
 
 get_cached_forecast() {
   local cache_duration=$(get_tmux_option @forecast-cache-duration 0) # in seconds, by default cache is disabled
-  local cache_path=$(get_tmux_option @forecast-cache-path "/tmp/tmux-weather.cache") # where to store the cached data
-  local cache_age=$(get_file_age "$cache_path")
+  local cache_path=$(get_tmux_option @forecast-cache-path "/tmp/tmux-weather.cache") # where to store the cached data local cache_age=$(get_file_age "$cache_path")
   local forecast
   if [ $cache_duration -gt 0 ]; then # Cache enabled branch
     # if file does not exist or cache age is greater then configured duration
@@ -35,7 +34,8 @@ get_cached_forecast() {
 print_forecast() {
   local char_limit=$(get_tmux_option @forecast-char-limit 75)
   local forecast=$(get_cached_forecast)
-  ${forecast/Sunny/☀️ }
+  forecast=${forecast/Sunny/☀️  }
+  forecast=${forecast/Cloudy/☁️  }
   echo ${forecast:0:$char_limit}
 }
 
