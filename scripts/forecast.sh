@@ -35,6 +35,7 @@ get_cached_forecast() {
 print_forecast() {
   local char_limit=$(get_tmux_option @forecast-char-limit 75)
   local forecast=$(get_cached_forecast)
+  ${forecast/Sunny/☀️ }
   echo ${forecast:0:$char_limit}
 }
 
