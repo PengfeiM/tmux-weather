@@ -36,6 +36,7 @@ print_forecast() {
   local forecast=$(get_cached_forecast)
   forecast=${forecast/Sunny/☀️  }
   forecast=${forecast/Cloudy/☁️  }
+  forecast=${forecast/Haze/🌫️ }
   echo ${forecast:0:$char_limit}
 }
 
